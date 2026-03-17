@@ -15,7 +15,6 @@ class PokemonDetailPage extends StatelessWidget {
         children: [
           Image.network(pokemon.imageUrl, height: 200, fit: BoxFit.contain),
           const SizedBox(height: 20),
-<<<<<<< HEAD
           
           // Información General
           _buildRow('ID', pokemon.id),
@@ -43,17 +42,11 @@ class PokemonDetailPage extends StatelessWidget {
           // Descripción
           const Text('Descripción', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
           const Divider(),
-=======
-          Text('ID: ${pokemon.id}', style: const TextStyle(fontSize: 20)),
-          Text('Tipo: ${pokemon.type}', style: const TextStyle(fontSize: 20)),
-          const SizedBox(height: 20),
->>>>>>> 487e45513efc9f51bab2a952a1a747cf7ad2dd38
           Text(pokemon.description, style: const TextStyle(fontSize: 16)),
         ],
       ),
     );
   }
-<<<<<<< HEAD
 
   // Extracción de widget: Previene el código repetitivo (Boilerplate)
   Widget _buildRow(String label, String value) {
@@ -68,6 +61,4 @@ class PokemonDetailPage extends StatelessWidget {
       ),
     );
   }
-=======
->>>>>>> 487e45513efc9f51bab2a952a1a747cf7ad2dd38
 }
