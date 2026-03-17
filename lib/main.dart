@@ -37,7 +37,7 @@ class _PokemonListPageState extends State<PokemonListPage> {
 
   List<Pokemon> _pokemons = [];
   bool _isLoading = true;
-  String? _error;
+  String? _errorMessage;
 
   @override
   void initState() {
@@ -58,7 +58,7 @@ class _PokemonListPageState extends State<PokemonListPage> {
       if (!mounted) return;
       
         setState(() {
-          _error = e.toString();
+          _errorMessage = e.toString();
           _isLoading = false;
         });
     }
@@ -75,9 +75,37 @@ class _PokemonListPageState extends State<PokemonListPage> {
       body: _buildBody(),
     );
   }
+  
   Widget _buildBody() {
     if (_isLoading) {
       return const Center(child: CircularProgressIndicator());
     }
+    if (_errorMessage != null) {
+      return Center(child: Text(_errorMessage!, style: const TextStyle(color: Colors.red, fontSize: 18), textAlign: TextAlign.center,),);
+    }
+
+    return ListView.builder(
+      itemCount: _pokemons.length,
+      itemBuilder: (context, index) {
+        final pokemon = _pokemons[index];
+        return ListTile(
+          // Consumimos el Getter dinámico que creamos en el modelo
+          leading: Image.network(
+            pokemon.imageUrl,
+            width: 50,
+            height: 50,
+            fit: BoxFit.cover,
+            errorBuilder: (context, error, stackTrace) => 
+                const Icon(Icons.broken_image, size: 40, color: Colors.grey),
+          ),
+          title: Text('${pokemon.id} - ${pokemon.name}'),
+          subtitle: Text('Tipo: ${pokemon.type}'),
+          trailing: const Icon(Icons.chevron_right), // Indicador de navegación
+          onTap: () {
+            // TODO: Navegación a la pantalla de detalle
+          },
+        );
+      },
+    );
   }
 }

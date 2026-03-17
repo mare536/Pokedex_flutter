@@ -20,7 +20,7 @@ class Pokemon {
     );
   }
 
-  String get imageURL{
+  String get imageUrl{
     const String proxy = 'https://api.codetabs.com/v1/proxy?quest=';
     const String baseUrl = 'https://www.vidalibarraquer.net/android/flutter/pokemons_images/pokemons';
     return '$proxy$baseUrl/$id.png';
